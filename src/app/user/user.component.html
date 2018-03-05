@@ -1,0 +1,3 @@
+<p [ngClass]="{bold: user.age > 21}"
+  (click)="selectUser()"
+  [style.background]="'red'">{{user.fullName}} - {{user.username | uppercase}}</p>

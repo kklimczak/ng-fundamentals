@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User, availableUsers } from './models/users';
+import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +8,5 @@ import { User, availableUsers } from './models/users';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
-  alt = 'Alternative';
-  counter = 0;
 
-  selectedUser: User;
-
-  users: User[] = availableUsers;
-
-  increment() {
-    this.counter++;
-  }
-
-  select(user: User) {
-    this.selectedUser = user;
-  }
 }

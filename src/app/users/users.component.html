@@ -1,0 +1,12 @@
+<div>
+    <h1 [title]="alt">{{title}}</h1>
+    <p *ngIf="counter < 5; else done">{{counter}}</p>
+    <ng-template #done>
+      <p>Max!</p>
+    </ng-template>
+    <button type="button" (click)="increment()">+++</button>
+
+    Selected user: {{selectedUser?.fullName}};
+
+    <app-user *ngFor="let user of users" [user]="user" (select)="select($event)"></app-user>
+  </div>

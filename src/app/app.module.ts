@@ -3,16 +3,37 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { UserComponent } from './user/user.component';
+import { UsersService } from './users.service';
+import {HttpClientModule} from '@angular/common/http';
+import { Route, RouterModule } from '@angular/router';
+import { UsersComponent } from './users/users.component';
+
+export const routes: Route[] = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/home'
+  },
+  {
+    path: 'home',
+    component: UsersComponent
+  }
+];
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserComponent,
+    UsersComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
