@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/users';
 import { UsersService } from '../users.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -17,7 +18,16 @@ export class UsersComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private usersService: UsersService) {}
+  selectedUserForm: FormGroup;
+
+  constructor(private usersService: UsersService, private fb: FormBuilder) {
+    this.selectedUserForm = this.fb.group({
+      username: ['', [Validators.required]],
+      email: [''],
+      fullName: [''],
+      age: [0]
+    });
+  }
 
   increment() {
     this.counter++;
@@ -25,6 +35,10 @@ export class UsersComponent implements OnInit {
 
   select(user: User) {
     this.selectedUser = user;
+    const {username, fullName, email, age} = user;
+    this.selectedUserForm.setValue({
+      username, fullName, email, age
+    });
   }
 
   ngOnInit() {
